@@ -1,0 +1,64 @@
+<% layout('layout/boilerplate') -%>
+<div class="row">
+    <div class="col-6  offset-4 mt-5 shadow mb-3 p-3">
+        <body>
+            <h5><%= data.title %></h5>          
+            <div class="card col-6  h-25" style="width:30rem; ">
+                <img src="<%= data.image.url %>" class="card-img-top" alt="image">
+                <div class="card-body">
+                  <p class="card-text"><b>Description:</b> <%= data.description %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Price:</b> &#8377;<%= data.price.toLocaleString("en-IN") %></li>
+                  <li class="list-group-item"><b>Location:</b> <%= data.location %></li>
+                  <li class="list-group-item"><b>Country:</b> <%= data.country %></li>
+                </ul>
+                <div class="card-body view-btns">
+                        <form class="btn_1" method="get" action="/listing/<%=  data._id %>/edit">
+                            <button class="btn btn-info Edit-btn">Edit</button>
+                        </form>
+                     <form  action="/listing/<%= data._id %>?_method=delete" method="post">
+                         <button class="btn btn-danger">Delete</button>
+                     </form>
+                </div>
+              </div>
+        </body>    
+    </div>
+    <br>
+    <hr> 
+</div>
+<div class="col-8 offset-4 mt-5">
+    <div class="card shadow p-3 mb-5 bg-body-#E3D2C3 rounded" style="width: 30rem;">
+        <div class="card-body">
+            <form action="/listing/<%= data._id %>/reviews" method="post" class="needs-validation" novalidate>
+                <h4>Leave a Review</h4>
+                <label for="range" class="form-label my-2"><b>Rating:</b></label>
+                <input type="range" min="1" max="5" id="range" class="form-range" name="review[rating]">
+                <div class="my-2">
+                    <label for="comment" class="control-label my-2"><b><i>Comment:</i></b></label>
+                <textarea name="review[Comment]" id="comment" class="form-control" cols="10" rows="4" required></textarea>
+                <div class="invalid-feedback">
+                    Please give a comment.
+                  </div>
+              
+            </div>
+                <button class="btn btn-info mt-4">submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <h3>All Feedback</h3>
+        <% for (rev of data.reviews) {%>
+        <span class="card col-5 mb-3 border ms-5 mt-4">
+            <p class="card-text"><%=rev.Comment%></p>
+            <p class="card-text"><%= rev.rating %> star</p>
+            <form method="post" action="/listing/<%= data._id %>/reviews/<%=rev._id%>?_method=delete">
+                <button class="btn btn-md btn-danger mb-3">Delete</button>
+            </form>
+        </span>
+        <% } %>
+      </div>
+</div>
+
+
+
