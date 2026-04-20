@@ -12,8 +12,6 @@ const wrapAsync= require("./utility/wrapAsync.js");
 const Review=require("./models/review.js");
 const {newListing,reviewSchema}=require("./schema.js");
 const expressError=require("./utility/expressErr.js");
-const { joi } = require('joi');
-const review = require('./models/review.js');
 
 const listing=require('./route/listing.js');
 const reviews=require("./route/review.js");
