@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const mongoose=require('mongoose');
 const Listing= require('./models/listing');
-const port=process.env.PORT || 3000;
+const port=process.env.PORT || 4000;
 require('dotenv').config();
 const path=require('path')
 const methodOverride = require('method-override');
@@ -12,6 +12,8 @@ const wrapAsync= require("./utility/wrapAsync.js");
 const Review=require("./models/review.js");
 const {newListing,reviewSchema}=require("./schema.js");
 const expressError=require("./utility/expressErr.js");
+const { joi } = require('joi');
+const review = require('./models/review.js');
 
 const listing=require('./route/listing.js');
 const reviews=require("./route/review.js");
@@ -33,12 +35,12 @@ async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
 
-// app.get("/",(req,res)=>{
-//   res.send("home directory");
-// })
+app.get("/",(req,res)=>{
+  res.redirect("/listing");
+})
 
 
-app.use('/',listing);
+app.use('/listing',listing);
 app.use('/listing/:id/reviews', reviews)
 
 
