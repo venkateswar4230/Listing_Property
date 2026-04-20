@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const mongoose=require('mongoose');
 const Listing= require('./models/listing');
-const port=process.env.PORT || 4000;
+const port=process.env.PORT || 3000;
 require('dotenv').config();
 const path=require('path')
 const methodOverride = require('method-override');
