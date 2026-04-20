@@ -35,9 +35,9 @@ async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
 
-app.get("/",(req,res)=>{
-  res.send("home directory");
-})
+// app.get("/",(req,res)=>{
+//   res.send("home directory");
+// })
 
 
 app.use('/listing',listing);
