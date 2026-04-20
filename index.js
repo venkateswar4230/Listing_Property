@@ -40,7 +40,7 @@ async function main() {
 // })
 
 
-app.use('/listing',listing);
+app.use('/',listing);
 app.use('/listing/:id/reviews', reviews)
 
 
